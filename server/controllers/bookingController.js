@@ -1,14 +1,12 @@
 const Booking = require('../models/Booking');
 const User = require('../models/User');
 
-// @desc    Create a new booking
-// @route   POST /api/bookings
-// @access  Private/Member
+
 const createBooking = async (req, res) => {
   try {
     const { trainer, date, time, duration, sessionType, notes, price } = req.body;
 
-    // Verify trainer exists and has role 'trainer'
+
     const trainerUser = await User.findById(trainer);
     if (!trainerUser) {
       return res.status(404).json({
@@ -89,9 +87,7 @@ const createBooking = async (req, res) => {
   }
 };
 
-// @desc    Get member's bookings
-// @route   GET /api/bookings/my
-// @access  Private/Member
+
 const getMemberBookings = async (req, res) => {
   try {
     const { status, startDate, endDate, page = 1, limit = 10 } = req.query;
@@ -133,9 +129,7 @@ const getMemberBookings = async (req, res) => {
   }
 };
 
-// @desc    Get trainer's bookings
-// @route   GET /api/bookings/trainer
-// @access  Private/Trainer
+
 const getTrainerBookings = async (req, res) => {
   try {
     const { status, startDate, endDate, page = 1, limit = 10 } = req.query;
@@ -177,14 +171,11 @@ const getTrainerBookings = async (req, res) => {
   }
 };
 
-// @desc    Get all bookings (Admin only)
-// @route   GET /api/bookings
-// @access  Private/Admin
 const getAllBookings = async (req, res) => {
   try {
     const { status, trainerId, memberId, startDate, endDate, page = 1, limit = 10 } = req.query;
     
-    // Build filter
+
     const filter = {};
     
     if (status) filter.status = status;
@@ -221,9 +212,7 @@ const getAllBookings = async (req, res) => {
   }
 };
 
-// @desc    Get booking by ID
-// @route   GET /api/bookings/:id
-// @access  Private
+
 const getBookingById = async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id);
@@ -323,9 +312,7 @@ const updateBookingStatus = async (req, res) => {
   }
 };
 
-// @desc    Cancel booking (Member can cancel their own)
-// @route   DELETE /api/bookings/:id
-// @access  Private
+
 const cancelBooking = async (req, res) => {
   try {
     const { cancellationReason } = req.body;
@@ -383,9 +370,7 @@ const cancelBooking = async (req, res) => {
   }
 };
 
-// @desc    Get booking statistics
-// @route   GET /api/bookings/stats
-// @access  Private/Trainer,Admin
+
 const getBookingStats = async (req, res) => {
   try {
     let matchFilter = {};
@@ -440,9 +425,7 @@ const getBookingStats = async (req, res) => {
   }
 };
 
-// @desc    Get available trainers for a specific date/time
-// @route   GET /api/bookings/available-trainers
-// @access  Private/Member
+
 const getAvailableTrainers = async (req, res) => {
   try {
     const { date, time } = req.query;
