@@ -19,7 +19,7 @@ const seedBookings = async () => {
     const member = await User.findOne({ role: 'member' });
 
     if (!admin || !trainer || !member) {
-      console.log('❌ Please run user seeder first');
+      console.log(' Please run user seeder first');
       process.exit(1);
     }
 
@@ -103,15 +103,15 @@ const seedBookings = async () => {
     for (let bookingData of bookings) {
       const booking = new Booking(bookingData);
       await booking.save();
-      console.log(`✅ Created booking: ${bookingData.date.toDateString()} at ${bookingData.time}`);
+      console.log(` Created booking: ${bookingData.date.toDateString()} at ${bookingData.time}`);
     }
 
-    console.log('🎉 Booking seeding completed successfully!');
-    console.log(`📊 Created ${bookings.length} sample bookings`);
+    console.log(' Booking seeding completed successfully!');
+    console.log(` Created ${bookings.length} sample bookings`);
     
     process.exit(0);
   } catch (error) {
-    console.error('❌ Error seeding bookings:', error);
+    console.error(' Error seeding bookings:', error);
     process.exit(1);
   }
 };
