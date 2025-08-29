@@ -59,7 +59,7 @@ app.post('/api/auth/login', (req, res) => {
 const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
-  console.log(`🔗 Test registration: POST http://localhost:${PORT}/api/auth/register`);
-  console.log(`🔗 Test login: POST http://localhost:${PORT}/api/auth/login`);
+  console.log(` Server running on port ${PORT}`);
+  console.log(` Test registration: POST http://localhost:${PORT}/api/auth/register`);
+  console.log(`Test login: POST http://localhost:${PORT}/api/auth/login`);
 });
