@@ -3,9 +3,6 @@ const WorkoutPlan = require('../models/WorkoutPlan');
 const Booking = require('../models/Booking');
 const ProgressEntry = require('../models/ProgressEntry');
 
-// @desc    Get member dashboard data
-// @route   GET /api/dashboard/member
-// @access  Private/Member
 const getMemberDashboard = async (req, res) => {
   try {
     const memberId = req.user._id;
@@ -133,9 +130,7 @@ const getMemberDashboard = async (req, res) => {
   }
 };
 
-// @desc    Get trainer dashboard data
-// @route   GET /api/dashboard/trainer
-// @access  Private/Trainer
+
 const getTrainerDashboard = async (req, res) => {
   try {
     const trainerId = req.user._id;
@@ -283,9 +278,7 @@ const getTrainerDashboard = async (req, res) => {
   }
 };
 
-// @desc    Get admin dashboard data
-// @route   GET /api/dashboard/admin
-// @access  Private/Admin
+
 const getAdminDashboard = async (req, res) => {
   try {
     const adminName = req.user.name;
@@ -354,7 +347,7 @@ const getAdminDashboard = async (req, res) => {
     // Get total progress entries
     const totalProgressEntries = await ProgressEntry.countDocuments();
 
-    // Get daily booking trends (last 30 days)
+ 
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
