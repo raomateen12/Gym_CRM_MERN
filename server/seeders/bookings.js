@@ -7,11 +7,11 @@ const seedBookings = async () => {
   try {
     // Connect to MongoDB
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('🗄️  MongoDB Connected for booking seeding');
+    console.log('  MongoDB Connected for booking seeding');
 
     // Clear existing bookings
     await Booking.deleteMany({});
-    console.log('🧹 Cleared existing bookings');
+    console.log('Cleared existing bookings');
 
     // Get users from database
     const admin = await User.findOne({ role: 'admin' });
