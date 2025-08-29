@@ -1,9 +1,7 @@
 const User = require('../models/User');
 const { sendTokenResponse } = require('../utils/tokenUtils');
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
+
 const register = async (req, res) => {
   try {
     console.log("=== REGISTRATION REQUEST ===");
@@ -97,14 +95,12 @@ const register = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
+
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user and include password field
+
     const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
@@ -124,7 +120,7 @@ const login = async (req, res) => {
       });
     }
 
-    // Check if user is active
+ 
     if (!user.isActive) {
       return res.status(401).json({
         success: false,
@@ -147,9 +143,7 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/auth/logout
-// @access  Private
+
 const logout = async (req, res) => {
   try {
     res.cookie('token', 'none', {
@@ -172,9 +166,7 @@ const logout = async (req, res) => {
   }
 };
 
-// @desc    Get current logged in user
-// @route   GET /api/auth/me
-// @access  Private
+
 const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -192,9 +184,7 @@ const getMe = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
+
 const updateProfile = async (req, res) => {
   try {
     const { name, phone } = req.body;
